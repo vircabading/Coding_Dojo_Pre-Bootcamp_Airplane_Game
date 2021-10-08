@@ -12,7 +12,7 @@
 <!--/////////////////////////////////////////////////////////////////
 	Head Section-->
 <head>
-	<title>.: AIRPLANE GAME :.</title>
+	<title>.: BASE DEFENSE :.</title>
 </head>
 
 <!--//////////////////////////////////////////////////////////////////
@@ -22,20 +22,20 @@
 		CSS Section-->
 	<style type="text/css">
 		#ocean {														/* Styling for the ocean background */
-			background-image: url("img/ocean.jpg");
+			background-image: url("img/battleFieldTopView.png");
 			height: 700px;
 			width: 900px;
 		}
 
 		.playerClass {													/* Styling for the player class */
-			background-image: url("img/player.png");
+			background-image: url("img/playerBlueSoldier.png");
 			height: 75px;
 			width: 75px;
 			position: absolute;
 		}
 
 		.enemyClass {													/* Stytling for enemy class */
-			background-image: url('img/enemy.png');
+			background-image: url('img/enemyRedSoldier.png');
 			width: 75px;
 			height: 75px;
 			position: absolute;
@@ -43,16 +43,11 @@
 
 	</style>
 
-	<div id='ocean'>													<!-- Div for the ocean -->
-		<div id= 'players'>												<!-- Div for the players -->
-			<!--<div class = 'playerClass'>									
-			</div>-->
-		</div>
-
-		<div id='enemies'>												<!-- Div for the enemies -->
-			<div class='enemyClass'></div>
-		</div>
-	</div>
+	<!--//////////////////////////////////////////////////////////////
+		HTML Divisions-->
+	<div id='ocean'></div>												<!-- Div for the ocean -->
+	<div id= 'players'></div>											<!-- Div for the players -->
+	<div id='enemies'></div>											<!-- Div for the enemies -->
 
 
 	<!--//////////////////////////////////////////////////////////////
@@ -67,9 +62,11 @@
 		}
 
 		var enemyArr = [												// Array of Enemy Objects
+			{left: 275, top: 20},
 			{left: 350, top: 20},
 			{left: 425, top: 20},
-			{left: 500, top: 20}
+			{left: 500, top: 20},
+			{left: 575, top: 20}
 		]
 
 		//////////////////////////////////////////////////////////////
