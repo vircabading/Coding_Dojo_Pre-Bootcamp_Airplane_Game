@@ -67,8 +67,9 @@
 		}
 
 		var enemyArr = [												// Array of Enemy Objects
-			{left: 350, top: 200},
-			{left: 325, top: 200}
+			{left: 350, top: 20},
+			{left: 425, top: 20},
+			{left: 500, top: 20}
 		]
 
 		//////////////////////////////////////////////////////////////
@@ -83,10 +84,27 @@
 			document.getElementById("players").innerHTML = content;		// Writes content in the players section of the HTML doc
 		}
 
+		function drawEnemies() {										// Draw Enemies function
+			var content = "";
+
+			console.log(enemyArr);
+
+			for (var index=0; index < enemyArr.length; index++) {		// Iterate through the array of Enemies
+				console.log(index);
+
+				content += "<div class='enemyClass' style='left:"
+				+ enemyArr[index].left + "px; top: " + enemyArr[index].top + "px'></div>";
+			}
+
+			document.getElementById("enemies").innerHTML = content;		// Writes content in the enemies sectin of the HTML doc
+		}
+
 		///////////////////////////////////////////////////////////////
 		// Executable section of Javascript
 
 		drawPlayer();													// Draw the Player
+
+		drawEnemies();													// Draw the Enemies
 
 		document.onkeydown = function(event) {							// Detects when a key is pressed down
 			console.log(event);
