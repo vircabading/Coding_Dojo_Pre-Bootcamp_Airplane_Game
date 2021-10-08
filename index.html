@@ -6,13 +6,13 @@
 	/////////////////////////////////////////////////////////////////
 -->
 
-<!DOCTYPE html>															// Declaration to the browser that this is an HTML doc
+<!DOCTYPE html>															<!-- Declaration to the browser that this is an HTML doc -->
 <html>
 
 <!--/////////////////////////////////////////////////////////////////
 	Head Section-->
 <head>
-	<title></title>
+	<title>.: AIRPLANE GAME :.</title>
 </head>
 
 <!--//////////////////////////////////////////////////////////////////
@@ -21,16 +21,83 @@
 	<!--//////////////////////////////////////////////////////////////
 		CSS Section-->
 	<style type="text/css">
+		#ocean {														/* Styling for the ocean background */
+			background-image: url("img/ocean.jpg");
+			height: 700px;
+			width: 900px;
+		}
+
+		.playerClass {													/* Styling for the player class */
+			background-image: url("img/player.png");
+			height: 75px;
+			width: 75px;
+			position: absolute;
+		}
+
+		.enemyClass {													/* Stytling for enemy class */
+			background-image: url('img/enemy.png');
+			width: 75px;
+			height: 75px;
+			position: absolute;
+		}
 
 	</style>
 
+	<div id='ocean'>													<!-- Div for the ocean -->
+		<div id= 'players'>												<!-- Div for the players -->
+			<!--<div class = 'playerClass'>									
+			</div>-->
+		</div>
 
+		<div id='enemies'>												<!-- Div for the enemies -->
+			<div class='enemyClass'></div>
+		</div>
+	</div>
 
 
 	<!--//////////////////////////////////////////////////////////////
 		Javascript Section-->
 	<script type="text/javascript">
-	
+
+		// ///////////////////////////////////////////////////////////
+		// Varibles declaration section of Javascript
+		var playerObj = {												// Player Object
+			left: 450,
+			top: 620
+		}
+
+		var enemyArr = [												// Array of Enemy Objects
+			{left: 350, top: 200},
+			{left: 325, top: 200}
+		]
+
+		//////////////////////////////////////////////////////////////
+		// Functions section of Javascript
+
+		function drawPlayer() {											// Draw Player Function
+			var content = "";
+
+			content = "<div class='playerClass' style='left:"  			// Assigns new player position to the content
+			+ playerObj.left +"px; top: " + playerObj.top + "px'></div>";
+
+			document.getElementById("players").innerHTML = content;		// Writes content in the players section of the HTML doc
+		}
+
+		///////////////////////////////////////////////////////////////
+		// Executable section of Javascript
+
+		drawPlayer();													// Draw the Player
+
+		document.onkeydown = function(event) {							// Detects when a key is pressed down
+			console.log(event);
+
+			if (event.key == "ArrowLeft") {								// If the Left Arrow key is pressed down
+				
+			} else if (event.key == "ArrowRight") {						// If the Right Arrow key is pressed down
+				 
+			}
+
+		}
 
 	</script>
 </body>
