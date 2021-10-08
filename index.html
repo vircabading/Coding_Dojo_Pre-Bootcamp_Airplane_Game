@@ -92,10 +92,12 @@
 			console.log(event);
 
 			if (event.key == "ArrowLeft") {								// If the Left Arrow key is pressed down
-				
+				playerObj.left = playerObj.left - 10;					// Move player 10 pixels to the left
 			} else if (event.key == "ArrowRight") {						// If the Right Arrow key is pressed down
-				 
+				playerObj.left = playerObj.left + 10; 
 			}
+
+			drawPlayer();												// Redraw the Player after a key is pressed
 
 		}
 
