@@ -91,13 +91,23 @@
 		document.onkeydown = function(event) {							// Detects when a key is pressed down
 			console.log(event);
 
-			if (event.key == "ArrowLeft") {								// If the Left Arrow key is pressed down
-				playerObj.left = playerObj.left - 10;					// Move player 10 pixels to the left
-			} else if (event.key == "ArrowRight") {						// If the Right Arrow key is pressed down
-				playerObj.left = playerObj.left + 10; 
+			if (event.key == "ArrowLeft"								// If the Left Arrow key is pressed down
+				&& playerObj.left >= 10) {								// Checks the left boundary of the play area
+			playerObj.left = playerObj.left - 10;						// Move player 10 pixels to the left
+			} else if (event.key == "ArrowRight"						// If the Right Arrow key is pressed down
+				&& playerObj.left <= 830 ) {							// Checks the right boundary of the play area
+				playerObj.left = playerObj.left + 10; 					// Move player 10 pixels to the right
+			} else if (event.key == "ArrowUp"							// If the Up Arrow key is pressed down
+				&& playerObj.top >= 410) {								// Checks the top boundary of the player area
+				playerObj.top = playerObj.top - 10;						// Move the player 10 pixels up
+			} else if (event.key == "ArrowDown"							// If the Down Arrow key is pressed down
+				&& playerObj.top <= 620) {								// Checks the bottom boundary of the player area
+				playerObj.top = playerObj.top + 10;						// Move the player 10 pixels down				
 			}
 
 			drawPlayer();												// Redraw the Player after a key is pressed
+			console.log("player x: " + playerObj.left);
+			console.log("player y: " + playerObj.top);
 
 		}
 
