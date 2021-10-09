@@ -96,6 +96,23 @@
 			document.getElementById("enemies").innerHTML = content;		// Writes content in the enemies sectin of the HTML doc
 		}
 
+		function moveTheEnemy() {
+			for (var index = 0; index < enemyArr.length; index++) {		// Iterate through the Array of Enemies
+				enemyArr[index].top = enemyArr[index].top + 5;
+			}
+		}
+
+		function loopTheGame() {										// Game Loop Function
+			console.log("The Game is Looping");
+
+			setTimeout(loopTheGame, 1000);								// Loops the game every second (1000 miliseconds)
+			
+			moveTheEnemy();
+
+			drawPlayer();												// Redraw the Player
+			drawEnemies();												// Redraw the enemies
+		}
+
 		///////////////////////////////////////////////////////////////
 		// Executable section of Javascript
 
@@ -125,6 +142,8 @@
 			console.log("player y: " + playerObj.top);
 
 		}
+
+		loopTheGame();
 
 	</script>
 </body>
