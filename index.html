@@ -41,13 +41,21 @@
 			position: absolute;
 		}
 
+		.bulletClass {													/* Styling for bullet class */
+			background-color: orange;
+			height: 12px;
+			width: 5px;
+			position: absolute;
+		}
+
 	</style>
 
 	<!--//////////////////////////////////////////////////////////////
 		HTML Divisions-->
-	<div id='ocean'></div>												<!-- Div for the ocean -->
+	<div id= 'ocean'></div>												<!-- Div for the ocean -->
 	<div id= 'players'></div>											<!-- Div for the players -->
-	<div id='enemies'></div>											<!-- Div for the enemies -->
+	<div id= 'enemies'></div>											<!-- Div for the enemies -->
+	<div id= 'bullets'></div>											<!-- Div for bullets-->
 
 
 	<!--//////////////////////////////////////////////////////////////
@@ -68,6 +76,10 @@
 			{left: 500, top: 20},
 			{left: 575, top: 20}
 		]
+
+		var bulletsArr = [];											// Array of Bullets | starts as empty
+
+		var gameLoopCounter = 1;
 
 		//////////////////////////////////////////////////////////////
 		// Functions section of Javascript
@@ -96,21 +108,45 @@
 			document.getElementById("enemies").innerHTML = content;		// Writes content in the enemies sectin of the HTML doc
 		}
 
+		function drawBullets() {										// Function to draw the bullets
+			var content = "";
+
+			for (var index = 0; index < bulletsArr.length; index++) {	// Iterate throught the array of bullets
+				content += "<div class='bulletClass' style='left:" 
+				+ bulletsArr[index].left + "px; top:" 
+				+ bulletsArr[index].top + "px'></div>";
+			}
+
+			document.getElementById("bullets").innerHTML = content;
+		}
+
 		function moveTheEnemy() {
 			for (var index = 0; index < enemyArr.length; index++) {		// Iterate through the Array of Enemies
 				enemyArr[index].top = enemyArr[index].top + 5;
 			}
 		}
 
+		function moveTheBullets() {
+			for (var index = 0; index < bulletsArr.length; index++) {
+				bulletsArr[index].top = bulletsArr[index].top - 20;
+			}
+		}
+
 		function loopTheGame() {										// Game Loop Function
-			console.log("The Game is Looping");
-
-			setTimeout(loopTheGame, 1000);								// Loops the game every second (1000 miliseconds)
-			
-			moveTheEnemy();
-
 			drawPlayer();												// Redraw the Player
 			drawEnemies();												// Redraw the enemies
+			drawBullets();												// Redraw the bullets
+
+			setTimeout(loopTheGame, 100);								// Loops the gameLoopCounter = 1; every 1/10 second (100 miliseconds)
+			
+			gameLoopCounter++;											// Counts number of times the game has looped
+			console.log("Loop Counter: " + gameLoopCounter);
+
+			if (gameLoopCounter % 10 == 0) {							// Move the enemy every second (1000 milliseconds)
+				moveTheEnemy();
+			}
+			moveTheBullets();
+			
 		}
 
 		///////////////////////////////////////////////////////////////
@@ -135,6 +171,11 @@
 			} else if (event.key == "ArrowDown"							// If the Down Arrow key is pressed down
 				&& playerObj.top <= 620) {								// Checks the bottom boundary of the player area
 				playerObj.top = playerObj.top + 10;						// Move the player 10 pixels down				
+			} else if (event.key == " ") {								// If the Spacebar is pressed down, fire a bullet
+				bulletsArr.push({left: (playerObj.left+55), 			// Create a bullet
+					top: (playerObj.top-5)});
+				console.log("# of bullets: " + bulletsArr.length);
+				drawBullets();											// Draw the bullets
 			}
 
 			drawPlayer();												// Redraw the Player after a key is pressed
