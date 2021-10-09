@@ -84,6 +84,10 @@
 		//////////////////////////////////////////////////////////////
 		// Functions section of Javascript
 
+		function getRandomInt(max) {                                    // Gets a random integer from 0 to max
+            return Math.floor((Math.random() * 100) % max);
+        }
+
 		function drawPlayer() {											// Draw Player Function
 			var content = "";
 
@@ -123,6 +127,11 @@
 		function moveTheEnemy() {
 			for (var index = 0; index < enemyArr.length; index++) {		// Iterate through the Array of Enemies
 				enemyArr[index].top = enemyArr[index].top + 5;
+				if ((getRandomInt(10) % 2) == 0) {						// Randomly choose if each player will move left or right
+					enemyArr[index].left = enemyArr[index].left - 10;	// Move the Soldier Left
+				} else {
+					enemyArr[index].left = enemyArr[index].left + 10;	// Move the Soldier Right
+				}
 			}
 		}
 
@@ -142,7 +151,7 @@
 			gameLoopCounter++;											// Counts number of times the game has looped
 			console.log("Loop Counter: " + gameLoopCounter);
 
-			if (gameLoopCounter % 10 == 0) {							// Move the enemy every second (1000 milliseconds)
+			if (gameLoopCounter % 5 == 0) {							// Move the enemy every second (1000 milliseconds)
 				moveTheEnemy();
 			}
 			moveTheBullets();
